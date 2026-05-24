@@ -1,271 +1,407 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
+    <!-- Primary Meta Tags -->
+    <meta
+      name="title"
+      content="VMHQA: A Vietnamese Multi-choice Dataset for Mental Health Domain Question Answering"
+    />
+    <meta
+      name="description"
+      content="VMHQA is a 10,000-record Vietnamese mental health MCQA dataset with USMLE-style questions, supporting facts, and benchmarks across BERT, LLM, and RAG setups."
+    />
+    <meta
+      name="keywords"
+      content="VMHQA, Mental Health Dataset, Vietnamese Multiple-Choice Question Answering (MCQA), BERT-based Models, NLP in Mental Health, Retrieval-Augmented Generation (RAG), Agentic Chunking, Large Language Models (LLMs)"
+    />
+    <meta
+      name="author"
+      content="Tu Anh Hoang Nguyen, Quang-Dieu Nguyen, Harius M. Nguyen, Alfred Hoang Nguyen, Loan T. T. Nguyen"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
 
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:site_name"
+      content="School of Computer Science and Engineering, International University, Ho Chi Minh City"
+    />
+    <meta
+      property="og:site_name"
+      content="Vietnam National University, Ho Chi Minh City"
+    />
+    <meta
+      property="og:site_name"
+      content="Faculty of Information Technology, FPT University, Thu Duc City"
+    />
+    <meta
+      property="og:title"
+      content="VMHQA: A Vietnamese Multi-choice Dataset for Mental Health Domain Question Answering"
+    />
+    <meta
+      property="og:description"
+      content="VMHQA is a 10,000-record Vietnamese mental health MCQA dataset with USMLE-style questions, supporting facts, and benchmarks across BERT, LLM, and RAG setups."
+    />
+    <meta property="og:url" content="https://vmhqa.vercel.app" />
+    <meta
+      property="og:image"
+      content="https://vmhqa.vercel.app/static/images/sns-og.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="VMHQA dataset overview and benchmark preview"
+    />
+    <meta
+      property="article:published_time"
+      content="2024-01-01T00:00:00.000Z"
+    />
+    <meta property="article:author" content="Tu Anh Hoang Nguyen" />
+    <meta property="article:author" content="Quang-Dieu Nguyen" />
+    <meta property="article:author" content="Harius M. Nguyen" />
+    <meta property="article:author" content="Alfred Hoang Nguyen" />
+    <meta property="article:author" content="Loan T. T. Nguyen" />
+    <meta property="article:section" content="Research" />
+    <meta property="article:tag" content="VMHQA" />
+    <meta property="article:tag" content="Mental Health Dataset" />
+    <meta
+      property="article:tag"
+      content="Vietnamese  Multiple-Choice  Question  Answering  (MCQA)"
+    />
+    <meta property="article:tag" content="BERT-based Models" />
+    <meta property="article:tag" content="NLP in Mental Health" />
+    <meta
+      property="article:tag"
+      content="Retrieval-Augmented  Generation  (RAG)"
+    />
+    <meta property="article:tag" content="Agentic  Chunking" />
+    <meta property="article:tag" content="Large  Language  Models (LLMs)" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- <meta name="twitter:site" content="@vnu_hcm">
+  <meta name="twitter:creator" content="@vmhqa"> -->
+    <meta
+      name="twitter:title"
+      content="VMHQA: A Vietnamese Multi-choice Dataset for
+Mental Health Domain Question Answering"
+    />
+    <meta
+      name="twitter:description"
+      content="VMHQA is a 10,000-record Vietnamese mental health MCQA dataset with USMLE-style questions, supporting facts, and benchmarks across BERT, LLM, and RAG setups."
+    />
+    <meta
+      name="twitter:image"
+      content="https://vmhqa.vercel.app/static/images/sns-twitter.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="VMHQA dataset overview and benchmark preview"
+    />
 
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
+    <!-- Academic/Research Specific -->
+    <meta
+      name="citation_title"
+      content="VMHQA: A Vietnamese Multi-choice Dataset for
+Mental Health Domain Question Answering"
+    />
+    <meta name="citation_author" content="Nguyen, Tu Anh Hoang" />
+    <meta name="citation_author" content="Nguyen, Quang-Dieu" />
+    <meta name="citation_author" content="Nguyen, Harius M." />
+    <meta name="citation_author" content="Nguyen, Alfred Hoang" />
+    <meta name="citation_author" content="Nguyen, Loan T. T." />
+    <meta name="citation_publication_date" content="2025" />
+    <meta
+      name="citation_conference_title"
+      content="EAI Endorsed Transactions on Scalable Information Systems"
+    />
+    <meta
+      name="citation_pdf_url"
+      content="https://vmhqa.vercel.app/static/pdfs/sample.pdf"
+    />
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#39546d" />
+    <meta name="msapplication-TileColor" content="#39546d" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://ajax.googleapis.com" />
+    <link rel="preconnect" href="https://documentcloud.adobe.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+    <title>VMHQA - Vietnamese Mental Health MCQA Dataset</title>
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="static/images/favicon.ico" />
+
+    <!-- Critical CSS - Load synchronously -->
+    <link rel="stylesheet" href="static/css/bulma.min.css" />
+    <link rel="stylesheet" href="static/css/index.css" />
+
+    <!-- Non-critical CSS - Load asynchronously -->
+    <link
+      rel="preload"
+      href="static/css/bulma-carousel.min.css"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <link
+      rel="preload"
+      href="static/css/bulma-slider.min.css"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <link
+      rel="preload"
+      href="static/css/fontawesome.all.min.css"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+
+    <!-- Fallback for browsers that don't support preload -->
+    <noscript>
+      <link rel="stylesheet" href="static/css/bulma-carousel.min.css" />
+      <link rel="stylesheet" href="static/css/bulma-slider.min.css" />
+      <link rel="stylesheet" href="static/css/fontawesome.all.min.css" />
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+      />
+    </noscript>
+
+    <!-- Fonts - Optimized loading -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Defer non-critical JavaScript -->
+    <script
+      defer
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script
+      defer
+      src="https://documentcloud.adobe.com/view-sdk/main.js"
+    ></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script defer src="static/js/bulma-carousel.min.js"></script>
+    <script defer src="static/js/bulma-slider.min.js"></script>
+    <script defer src="static/js/index.js"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
       {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.hcmiu.edu.vn/#org",
+            "name": "School of Computer Science and Engineering, International University, Ho Chi Minh City",
+            "logo": "https://vmhqa.vercel.app/static/images/hcmiu.png",
+            "url": "https://www.hcmiu.edu.vn/"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://www.vnuhcm.edu.vn/#org",
+            "name": "Vietnam National University, Ho Chi Minh City",
+            "url": "https://www.vnuhcm.edu.vn/",
+            "logo": "https://vmhqa.vercel.app/static/images/vnuhcmc.png",
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://daihoc.fpt.edu.vn/#org",
+            "name": "Faculty of Information Technology, FPT University, Thu Duc City",
+            "url": "https://daihoc.fpt.edu.vn/"
+            "logo": "https://vmhqa.vercel.app/static/images/fpt.png",
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://publications.eai.eu/#org",
+            "name": "EAI Endorsed Transactions on Scalable Information Systems",
+            "url": "https://publications.eai.eu/index.php/sis"
+            "logo": "https://vmhqa.vercel.app/static/images/fpt.png",
+          },
+          {
+            "@type": "ScholarlyArticle",
+            "@id": "https://vmhqa.vercel.app/#paper",
+            "headline": "VMHQA: A Vietnamese Multi-choice Dataset for Mental Health Domain Question Answering",
+            "description": "VMHQA is a 10,000-record Vietnamese mental health MCQA dataset with USMLE-style questions and supporting fact explanations.",
+            "author": [
+              {
+                "@type": "Person",
+                "name": "Tu Anh Hoang Nguyen",
+                "affiliation": [
+                  { "@id": "https://www.hcmiu.edu.vn/#org" },
+                  { "@id": "https://www.vnuhcm.edu.vn/#org" }
+                ]
+              },
+              {
+                "@type": "Person",
+                "name": "Quang-Dieu Nguyen",
+                "affiliation": [
+                  { "@id": "https://www.hcmiu.edu.vn/#org" },
+                  { "@id": "https://www.vnuhcm.edu.vn/#org" }
+                ]
+              },
+              {
+                "@type": "Person",
+                "name": "Harius M. Nguyen",
+                "affiliation": [
+                  { "@id": "https://www.hcmiu.edu.vn/#org" },
+                  { "@id": "https://www.vnuhcm.edu.vn/#org" }
+                ]
+              },
+              {
+                "@type": "Person",
+                "name": "Alfred Hoang Nguyen",
+                "affiliation": [
+                  { "@id": "https://daihoc.fpt.edu.vn/#org" }
+                ]
+              },
+              {
+                "@type": "Person",
+                "name": "Loan T. T. Nguyen",
+                "affiliation": [
+                  { "@id": "https://www.hcmiu.edu.vn/#org" },
+                  { "@id": "https://www.vnuhcm.edu.vn/#org" }
+                ]
+              }
+            ],
+            "datePublished": "2025-09-25",
+            "publisher": { "@id": "https://publications.eai.eu/#org" },
+            "url": "https://vmhqa.vercel.app",
+            "image": "https://vmhqa.vercel.app/static/images/example.png",
+            "keywords": ["VMHQA", "Mental Health Dataset", "Vietnamese Multiple-Choice Question Answering (MCQA)", "BERT-based Models", "NLP in Mental Health", "Retrieval-Augmented Generation (RAG)", "Agentic Chunking", "Large Language Models (LLMs)"],
+            "abstract": "This paper introduces VMHQA, a Vietnamese mental-health multiple-choice QA dataset with 10,000 records and 8,599 contextual paragraphs.",
+            "citation": "doi:10.4108/eetsis.7678",
+            "isAccessibleForFree": true,
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "mainEntity": {
+              "@type": "WebPage",
+              "@id": "https://vmhqa.vercel.app"
+            },
+            "about": [
+              {
+                "@type": "Thing",
+                "name": "Mental Health NLP"
+              },
+              {
+                "@type": "Thing",
+                "name": "Vietnamese Question Answering"
+              }
+            ]
+          }
+        ]
       }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
-</head>
-<body>
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    <!-- Scroll to Top Button -->
+    <button
+      class="scroll-to-top"
+      onclick="scrollToTop()"
+      title="Scroll to top"
+      aria-label="Scroll to top"
+    >
+      <i class="fas fa-chevron-up"></i>
     </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
 
-  <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
+    <main id="main-content">
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <h1 class="title is-1 publication-title">
+                  VMHQA: A Vietnamese Multi-choice Dataset for Mental Health
+                  Domain Question Answering
+                </h1>
+                <div class="is-size-5 publication-authors">
                   <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+                    <a href="mailto:nghganhtu@gmail.com" target="_blank"
+                      >Tu Anh Hoang Nguyen</a
+                    ><sup>1,2</sup>,</span
+                  >
+                  <span class="author-block">
+                    <a href="mailto:nqdieu@proton.me" target="_blank"
+                      >Quang-Dieu Nguyen</a
+                    ><sup>1,2</sup>,</span
+                  >
+                  <span class="author-block">
+                    <a href="#" target="_blank">Harius M. Nguyen</a
+                    ><sup>1,2</sup>,</span
+                  >
+                  <span class="author-block">
+                    <a href="#" target="_blank">Alfred Hoang Nguyen</a
+                    ><sup>3</sup>,</span
+                  >
+                  <span class="author-block">
+                    <a href="mailto:nttloan@hcmiu.edu.vn" target="_blank"
+                      >Loan T. T. Nguyen</a
+                    ><sup>1,2,*</sup>
                   </span>
-                  </div>
+                </div>
 
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
+                <div class="is-size-5 publication-authors">
+                  <span class="author-block"
+                    ><sup>1</sup> School of Computer Science and Engineering,
+                    International University, Ho Chi Minh City 700000, Viet Nam
+                    <br />
+                    <sup>2</sup> Vietnam National University, Ho Chi Minh City
+                    700000, Vietnam
+                    <br />
+                    <sup>3</sup> Faculty of Information Technology, FPT
+                    University, Thu Duc City 71300, Ho Chi Minh City, Vietnam
+                    <br />
+                    <sup>*</sup> Corresponding author:
+                    <a href="mailto:nttloan@hcmiu.edu.vn"
+                      >nttloan@hcmiu.edu.vn</a
+                    >
+                    <br />
+                    EAI Endorsed Transactions on Scalable Information Systems
+                    (2025)</span
+                  >
+                </div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
+                <div class="column has-text-centered">
+                  <div class="publication-links">
+                    <span class="link-block">
+                      <a
+                        href="static/pdfs/sample.pdf"
+                        target="_blank"
+                        class="external-link button is-normal is-rounded is-dark"
+                      >
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
                         </span>
@@ -273,248 +409,514 @@
                       </a>
                     </span>
 
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
                     <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
+                      <a
+                        href="https://doi.org/10.4108/eetsis.7678"
+                        target="_blank"
+                        class="external-link button is-normal is-rounded is-dark"
+                      >
+                        <span class="icon">
+                          <i class="ai ai-doi"></i>
+                        </span>
+                        <span>DOI</span>
+                      </a>
                     </span>
-                    <span>Code</span>
-                  </a>
-                </span>
 
-                <!-- TODO: Update with your arXiv paper ID -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+                    <span class="link-block">
+                      <a
+                        href="https://github.com/nghganhtu/VMHQA"
+                        target="_blank"
+                        class="external-link button is-normal is-rounded is-dark"
+                      >
+                        <span class="icon">
+                          <i class="fab fa-github"></i>
+                        </span>
+                        <span>Code</span>
+                      </a>
+                    </span>
+
+                    <span class="link-block">
+                      <a
+                        href="https://huggingface.co/datasets/JosephNguyen/VMHQA"
+                        target="_blank"
+                        class="external-link button is-normal is-rounded is-dark"
+                      >
+                        <span class="icon">
+                          <span class="hf-icon">🤗</span>
+                        </span>
+                        <span>Hugging Face</span>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Paper abstract -->
+      <section class="section hero is-light">
+        <div class="container is-max-widescreen">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Abstract</h2>
+              <div class="content has-text-justified">
+                <p>
+                  This paper introduces VMHQA, a Vietnamese multiple-choice
+                  question answering dataset for the mental health domain. The
+                  dataset contains 10,000 curated records across 1,166 subjects,
+                  including DSM-5 topics, and 8,599 supporting paragraphs from
+                  trusted medical and academic sources. Each item follows a
+                  USMLE-style format with question, options, answer, and
+                  evidence context. The paper benchmarks BERT-based models,
+                  7B-9B LLMs, GPT frameworks, and Retrieval-Augmented Generation
+                  with Agentic Chunking, showing the value of structured
+                  retrieval for domain-specific mental health QA.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End paper abstract -->
+
+      <!-- Dataset preview and access -->
+      <section class="section dataset-section">
+        <div class="container is-max-desktop">
+          <div class="dataset-card">
+            <h2 class="title is-3 dataset-title">Dataset Preview</h2>
+            <div class="dataset-table-wrap">
+              <table class="table is-fullwidth dataset-table">
+                <thead>
+                  <tr>
+                    <th>Topic</th>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th>Option A</th>
+                    <th>Option B</th>
+                    <th>Option C</th>
+                    <th>Option D</th>
+                    <th>Paragraph 1</th>
+                    <th>Paragraph 2</th>
+                    <th>Paragraph 3</th>
+                    <th>Fact 1</th>
+                    <th>Fact 2</th>
+                    <th>Fact 3</th>
+                    <th>Question_Type</th>
+                    <th>Reference</th>
+                    <th>ID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ảo Thanh</td>
+                    <td>
+                      Việc phát hiện nguyên nhân thực sự gây nên ảo thanh có vai
+                      trò gì trong điều trị?
+                    </td>
+                    <td>2</td>
+                    <td>Giúp tăng cường khả năng nghe của bệnh nhân</td>
+                    <td>
+                      Giúp kiểm soát được nguyên căn, từ đó ảo thanh sẽ biến mất
+                      hoặc ít xảy ra
+                    </td>
+                    <td>Giúp bệnh nhân tự điều trị mà không cần đến bác sĩ</td>
+                    <td>Giúp bệnh nhân cảm thấy vui vẻ hơn</td>
+                    <td>
+                      Việc điều trị phụ thuộc vào nguyên nhân thực sự gây nên ảo
+                      thanh. Khi bạn và bác sĩ kiểm soát được nguyên căn thật
+                      sự, ảo thanh sẽ biến mất hoặc ít nhất là không xảy ra quá
+                      thường xuyên. Trong một số trường hợp, bác sĩ có thể hạ
+                      thấp liều thuốc của bạn, hoặc việc điều trị có thể phức
+                      tạp hơn với thuốc và nhiều liệu pháp trị liệu khác để đạt
+                      được hiệu quả. Khi bạn thường xuyên gặp ảo thanh, bạn cần
+                      phải đến gặp bác sĩ để xác định nguyên nhân và có phương
+                      án điều trị sớm. Ảo thanh nếu không điều trị sẽ gây ra
+                      nhiều hậu quả nghiêm trọng cho người bệnh.
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>
+                      Việc điều trị phụ thuộc vào nguyên nhân thực sự gây nên ảo
+                      thanh. Khi bạn và bác sĩ kiểm soát được nguyên căn thật
+                      sự, ảo thanh sẽ biến mất hoặc ít nhất là không xảy ra quá
+                      thường xuyên.
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>What</td>
+                    <td>
+                      https://hellodoctors.vn/trieu-chung/trieu-chung-nghe-tieng-noi-trong-dau-nguyen-nhan-va-cach-dieu-tri.html
+                    </td>
+                    <td>What1</td>
+                  </tr>
+                  <tr>
+                    <td>Sợ không gian hẹp</td>
+                    <td>chứng sợ không gian hẹp gây ảnh hưởng đến điều gì</td>
+                    <td>1</td>
+                    <td>Đến sức khỏe, đời sống sinh hoạt</td>
+                    <td>Đến sinh hoạt</td>
+                    <td>Đến hạnh phúc</td>
+                    <td>Đến niềm vui</td>
+                    <td>
+                      Một số yếu tố có thể làm kích hoạt nỗi sợ này đó chính là
+                      việc ở trong một căn phòng nhỏ không có cửa sổ, bên trong
+                      thang máy, ở trên máy bay,… Vài trường hợp còn cho biết
+                      rằng họ cảm thấy khó chịu và sợ hãi khi phải mặc các trang
+                      phục kín cổ. Mức độ sợ hãi ở mỗi người sẽ khác nhau và gây
+                      ảnh hưởng đến sức khỏe, đời sống sinh hoạt nếu không kịp
+                      thời phát hiện và can thiệp đúng cách.
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>
+                      Mức độ sợ hãi ở mỗi người bệnh sợ không gian hẹp sẽ khác
+                      nhau và gây ảnh hưởng đến sức khỏe, đời sống sinh hoạt nếu
+                      không kịp thời phát hiện và can thiệp đúng cách.
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>What</td>
+                    <td>
+                      https://trilieutamly.com/hoi-chung-so-khong-gian-hep-11290.html
+                    </td>
+                    <td>What2</td>
+                  </tr>
+                  <tr>
+                    <td>Hội Chứng Baby Blues</td>
+                    <td>
+                      Đâu là một số lý do và yếu tố nguy cơ có liên quan đến hội
+                      chứng Baby Blues?
+                    </td>
+                    <td>3</td>
+                    <td>Sự thay đổi từ từ của nội tiết tố</td>
+                    <td>Sự thay đổi đột ngột của tế bào</td>
+                    <td>
+                      Sự thay đổi đột ngột của nội tiết tố, sự thay đổi vật lý,
+                      do căng thẳng, stress
+                    </td>
+                    <td>Sự thay đổi đột ngột của các tinh thể</td>
+                    <td>
+                      Như đã chia sẻ ở trên, hiện vẫn chưa có bất kì nghiên cứu
+                      chính xác nào khẳng định về các nguyên nhân gây ra hội
+                      chứng Baby Blues. Tuy nhiên, các nhà khoa học cũng đã chỉ
+                      ra được một số lý do và yếu tố nguy cơ có liên quan đến
+                      tình trạng này. Cụ thể như sau: Sự thay đổi đột ngột của
+                      nội tiết tố, sự thay đổi vật lý, do căng thẳng, stress.
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>
+                      Như đã chia sẻ ở trên, hiện vẫn chưa có bất kì nghiên cứu
+                      chính xác nào khẳng định về các nguyên nhân gây ra hội
+                      chứng Baby Blues. Tuy nhiên, các nhà khoa học cũng đã chỉ
+                      ra được một số lý do và yếu tố nguy cơ có liên quan đến
+                      tình trạng này. Cụ thể như sau: Sự thay đổi đột ngột của
+                      nội tiết tố, sự thay đổi vật lý, do căng thẳng, stress.
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>What</td>
+                    <td>
+                      https://trilieutamly.com/tranh-nham-lan-hoi-chung-baby-blues-va-tram-cam-sau-sinh-13584.html
+                    </td>
+                    <td>What3</td>
+                  </tr>
+                  <tr>
+                    <td>Hoang tưởng bị hại</td>
+                    <td>Thế nào là hội chứng hoang tưởng bị hại?</td>
+                    <td>2</td>
+                    <td>
+                      Một loại rối loạn tâm thần liên quan đến hành vi ăn uống
+                      và hình thể.
+                    </td>
+                    <td>
+                      Một tình trạng bệnh tâm thần phổ biến, gồm nhiều dạng như
+                      hoang tưởng ghen tuông, cơ thể, tự cao, được yêu và bị
+                      hại.
+                    </td>
+                    <td>
+                      Tình trạng tổn thương khu vực tai trong và não khiến cơ
+                      thể mất thăng bằng.
+                    </td>
+                    <td>
+                      Chứng rối loạn phát triển đặc trưng bởi khiếm khuyết quan
+                      hệ, giao tiếp và hành vi lặp lại.
+                    </td>
+                    <td>
+                      Hoang tưởng bị hại là một dạng của chứng hoang tưởng,
+                      người bệnh luôn nghĩ rằng có người muốn mưu hại mình. Từ
+                      đó, khiến nhiều bệnh nhân gây tổn hại đến người thân, bạn
+                      bè. Hoang tưởng bị hại thường đi kèm với các ảo giác như
+                      ảo thanh, ảo thị.
+                    </td>
+                    <td>
+                      Hoang tưởng bị hại là một trong những dạng rối loạn hoang
+                      tưởng phổ biến hiện nay (gồm hoang tưởng bị hại, ghen
+                      tuông hoang tưởng, hoang tưởng cơ thể, hoang tưởng được
+                      yêu, hoang tưởng tự cao). Đặc trưng của tình trạng này
+                      chính là người bệnh luôn có niềm tin rằng đang có người
+                      hay một thế lực nào đó có âm mưu làm hại mình, cảm giác
+                      như luôn có mối nguy hiểm kề cận nên luôn trong trạng thái
+                      đề phòng.
+                    </td>
+                    <td>
+                      Rối loạn hoang tưởng là một tình trạng bệnh tâm thần rất
+                      phổ biến hiện nay. Căn bệnh này được biểu hiện với nhiều
+                      dạng khác nhau như hoang tưởng ghen tuông, hoang tưởng cơ
+                      thể, hoang tưởng tự cao, hoang tưởng được yêu và hoang
+                      tưởng bị hại.
+                    </td>
+                    <td>
+                      Hoang tưởng bị hại là một dạng của chứng hoang tưởng,
+                      người bệnh luôn nghĩ rằng có người muốn mưu hại mình. Từ
+                      đó, khiến nhiều bệnh nhân gây tổn hại đến người thân, bạn
+                      bè. Hoang tưởng bị hại thường đi kèm với các ảo giác như
+                      ảo thanh, ảo thị.
+                    </td>
+                    <td>
+                      Hoang tưởng bị hại là một trong các loại rối loạn hoang
+                      tưởng phổ biến ngày nay. Đặc điểm của nó là niềm tin rằng
+                      có người hoặc thế lực đang âm mưu hại mình, luôn cảm thấy
+                      nguy hiểm và đề phòng.
+                    </td>
+                    <td>
+                      Rối loạn hoang tưởng là một vấn đề tâm thần phổ biến, bao
+                      gồm nhiều dạng như hoang tưởng ghen tuông, hoang tưởng cơ
+                      thể, hoang tưởng tự cao, hoang tưởng được yêu và hoang
+                      tưởng bị hại.
+                    </td>
+                    <td>How</td>
+                    <td>
+                      https://tamly.com.vn/hoang-tuong-bi-hai-6091.html ;
+                      https://tamlytrilieunhc.com/hoang-tuong-bi-hai-16103.html
+                    </td>
+                    <td>How1</td>
+                  </tr>
+                  <tr>
+                    <td>Chữa mất ngủ bằng hà thủ ô</td>
+                    <td>
+                      Khi sử dụng hà thủ ô để chữa mất ngủ, không nên sử dụng
+                      gì?
+                    </td>
+                    <td>2</td>
+                    <td>Chất kích thích</td>
+                    <td>
+                      Các loại thuốc lợi tiểu, thuốc chống đông; kiêng sử dụng
+                      củ hành và củ tỏi
+                    </td>
+                    <td>Đồ uống có ga</td>
+                    <td>Gà và vịt</td>
+                    <td>
+                      Hà thủ ô được khuyến cáo không sử dụng chung với các loại
+                      thuốc lợi tiểu, thuốc chống đông. Việc này có thể gây sự
+                      tương tác lẫn nhau giữa các loại thuốc, từ đó là tăng tác
+                      dụng phụ gây nguy hại đến cho sức khỏe.
+                    </td>
+                    <td>
+                      Đồng thời, trong quá trình chữa mất ngủ với hà thủ ô, tốt
+                      nhất bạn nên kiêng sử dụng củ hành và củ tỏi. Những thực
+                      phẩm này kỵ nhau nên dùng cùng nhau có thể gây ảnh hưởng
+                      không tốt cho người sử dụng.
+                    </td>
+                    <td>0</td>
+                    <td>
+                      Hà thủ ô được khuyến cáo không sử dụng chung với các loại
+                      thuốc lợi tiểu, thuốc chống đông.
+                    </td>
+                    <td>
+                      Đồng thời, trong quá trình chữa mất ngủ với hà thủ ô, tốt
+                      nhất bạn nên kiêng sử dụng củ hành và củ tỏi.
+                    </td>
+                    <td>0</td>
+                    <td>What</td>
+                    <td>
+                      https://trilieutamly.com/chua-mat-ngu-bang-ha-thu-o-5994.html
+                    </td>
+                    <td>What4</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="dataset-note">
+              Only a small preview is displayed. Full dataset access requires a
+              request form.
+            </p>
+          </div>
+
+          <div class="dataset-access-grid">
+            <div class="dataset-card">
+              <h2 class="title is-3 dataset-title">Dataset Access Policy</h2>
+              <ul class="policy-list">
+                <li>
+                  Cite the VMHQA paper in any publication, report, thesis,
+                  presentation, or derivative work.
+                </li>
+                <li>Do not use the dataset for commercial purposes.</li>
+                <li>Do not redistribute, resell, or re-upload the dataset.</li>
+                <li>
+                  Use the data responsibly, especially because it relates to the
+                  mental health domain.
+                </li>
+              </ul>
+            </div>
+
+            <div class="dataset-card">
+              <h2 class="title is-3 dataset-title">Request Dataset Access</h2>
+              <form
+                id="dataset-request-form"
+                class="dataset-form"
+                action="#"
+                method="post"
+                data-endpoint="https://script.google.com/macros/s/AKfycbyq10lH9wfI8KQdwb_N_Zz27ALV5NtwR2jXry8UjurKB5BbhmkvwtYpGpBGoZNMAHkE0A/exec"
+              >
+                <label for="name">Your name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Enter your full name"
+                  required
+                />
+
+                <label for="email">Email address</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Enter your email address"
+                  required
+                />
+
+                <label for="organization">Organization / Institution</label>
+                <input
+                  id="organization"
+                  name="organization"
+                  type="text"
+                  placeholder="Enter your organization or institution"
+                  required
+                />
+
+                <label for="purpose">Intended purpose of use</label>
+                <textarea
+                  id="purpose"
+                  name="purpose"
+                  rows="3"
+                  placeholder="Describe how you plan to use the dataset"
+                  required
+                ></textarea>
+
+                <label class="check-row"
+                  ><input type="checkbox" name="agree1" required /> I agree to
+                  cite the VMHQA paper.</label
+                >
+                <label class="check-row"
+                  ><input type="checkbox" name="agree2" required /> I confirm
+                  that I will not use this dataset for any commercial
+                  purpose.</label
+                >
+                <label class="check-row"
+                  ><input type="checkbox" name="agree3" required /> I agree not
+                  to redistribute the dataset.</label
+                >
+
+                <button
+                  id="dataset-submit-btn"
+                  class="button is-dark is-fullwidth"
+                  type="submit"
+                >
+                  Request Dataset Access
+                </button>
+              </form>
+              <p id="dataset-success" class="dataset-success" hidden>
+                <i class="fas fa-check-circle"></i>
+                Thank you. The dataset download link will be automatically sent
+                to your email.
+              </p>
+              <p id="dataset-error" class="dataset-error" hidden>
+                <i class="fas fa-exclamation-circle"></i>
+                We could not submit your request. Please try again.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End dataset preview and access -->
+
+      <!--BibTex citation -->
+      <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+          <div class="bibtex-header">
+            <h2 class="title">BibTeX</h2>
+            <button
+              class="copy-bibtex-btn"
+              onclick="copyBibTeX()"
+              title="Copy BibTeX to clipboard"
+            >
+              <i class="fas fa-copy"></i>
+              <span class="copy-text">Copy</span>
+            </button>
+          </div>
+          <pre
+            id="bibtex-code"
+          ><code>@article{nguyenVMHQAVietnameseMultichoice2025,
+  title        = {{{VMHQA}}: {{A Vietnamese Multi-choice Dataset}} for {{Mental Health Domain Question Answering}}},
+  shorttitle   = {{VMHQA}},
+  author       = {Nguyen, Tu Anh Hoang and Nguyen, Quang-Dieu and Nguyen, Harius M. and Nguyen, Alfred Hoang and Nguyen, Loan},
+  year         = 2025,
+  month        = sep,
+  journal      = {ICST Transactions on Scalable Information Systems},
+  volume       = 12,
+  number       = 4,
+  doi          = {10.4108/eetsis.7678},
+  issn         = {2032-9407},
+  copyright    = {https://creativecommons.org/licenses/by-nc-sa/4.0}
+}
+</code></pre>
+        </div>
+      </section>
+      <!--End BibTex citation -->
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This page was built using the
+                <a
+                  href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                  target="_blank"
+                  >Academic Project Page Template</a
+                >
+                which was adopted from the <a
+                  href="https://nerfies.github.io"
+                  target="_blank"
+                  >Nerfies</a
+                > project page. You are free to borrow the source code of this
+                website, we just ask that you link back to this page in the
+                footer. <br />
+                This website is licensed under a
+                <a
+                  rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/"
+                  target="_blank"
+                  >Creative Commons Attribution-ShareAlike 4.0 International
+                  License</a
+                >.
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
+    <!-- Statcounter tracking code -->
 
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
-
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
-
-
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
-
-
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End youtube video -->
-
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
-
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
     <!-- End of Statcounter Code -->
-
   </body>
-  </html>
+</html>
