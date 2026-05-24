@@ -125,6 +125,133 @@ function setupVideoCarouselAutoplay() {
   });
 }
 
+function setupDatasetTablePreviewModal() {
+  const table = document.querySelector(".dataset-table");
+  const modal = document.getElementById("dataset-cell-modal");
+  const modalContent = document.getElementById("dataset-modal-content");
+  const fullscreenRoot = document.getElementById("dataset-preview-card");
+
+  if (!table || !modal || !modalContent) return;
+
+  // Ensure modal is inside fullscreen root so it remains visible in fullscreen mode.
+  if (fullscreenRoot && modal.parentElement !== fullscreenRoot) {
+    fullscreenRoot.appendChild(modal);
+  }
+
+  const LONG_TEXT_THRESHOLD = 100;
+  const cells = table.querySelectorAll("tbody td");
+
+  cells.forEach((cell) => {
+    const text = (cell.textContent || "").replace(/\s+/g, " ").trim();
+    if (text.length <= LONG_TEXT_THRESHOLD) return;
+
+    cell.dataset.fullText = text;
+    cell.innerHTML = "";
+
+    const preview = document.createElement("div");
+    preview.className = "cell-preview-text";
+    preview.textContent = text;
+
+    const moreBtn = document.createElement("button");
+    moreBtn.type = "button";
+    moreBtn.className = "cell-see-more";
+    moreBtn.textContent = "See more...";
+    moreBtn.setAttribute("aria-label", "See full cell content");
+    moreBtn.addEventListener("click", () => {
+      modalContent.textContent = text;
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+    });
+
+    cell.appendChild(preview);
+    cell.appendChild(moreBtn);
+  });
+
+  table.addEventListener("click", (event) => {
+    const trigger = event.target.closest(".cell-see-more");
+    if (!trigger) return;
+
+    const td = trigger.closest("td");
+    if (!td || !td.dataset.fullText) return;
+    event.preventDefault();
+    modalContent.textContent = td.dataset.fullText;
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+  });
+
+  modal.addEventListener("click", (event) => {
+    const shouldClose = event.target.closest("[data-close-modal='true']");
+    if (!shouldClose) return;
+    modal.hidden = true;
+    document.body.style.overflow = "";
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hidden) {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+    }
+  });
+}
+
+function setupDatasetTableFullscreen() {
+  const fullscreenRoot = document.getElementById("dataset-preview-card");
+  const wrap = document.querySelector(".dataset-table-wrap");
+  const button = document.getElementById("dataset-fullscreen-btn");
+  if (!fullscreenRoot || !wrap || !button) return;
+
+  const icon = button.querySelector("i");
+  const label = button.querySelector("span");
+
+  const updateButtonState = () => {
+    const isFullscreen =
+      document.fullscreenElement === fullscreenRoot ||
+      document.webkitFullscreenElement === fullscreenRoot;
+
+    if (isFullscreen) {
+      if (icon) {
+        icon.classList.remove("fa-expand");
+        icon.classList.add("fa-compress");
+      }
+      if (label) label.textContent = "Exit full screen";
+    } else {
+      if (icon) {
+        icon.classList.remove("fa-compress");
+        icon.classList.add("fa-expand");
+      }
+      if (label) label.textContent = "Full screen";
+    }
+  };
+
+  button.addEventListener("click", async () => {
+    const isFullscreen =
+      document.fullscreenElement === fullscreenRoot ||
+      document.webkitFullscreenElement === fullscreenRoot;
+
+    try {
+      if (!isFullscreen) {
+        if (fullscreenRoot.requestFullscreen) {
+          await fullscreenRoot.requestFullscreen();
+        } else if (fullscreenRoot.webkitRequestFullscreen) {
+          fullscreenRoot.webkitRequestFullscreen();
+        }
+      } else if (document.exitFullscreen) {
+        await document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    } catch (_) {
+      // Ignore failure and keep current state.
+    } finally {
+      updateButtonState();
+    }
+  });
+
+  document.addEventListener("fullscreenchange", updateButtonState);
+  document.addEventListener("webkitfullscreenchange", updateButtonState);
+  updateButtonState();
+}
+
 // Dataset request form submit
 function setupDatasetRequestForm() {
   const form = document.getElementById("dataset-request-form");
@@ -232,4 +359,10 @@ $(document).ready(function () {
 
   // Setup dataset request form submission
   setupDatasetRequestForm();
+
+  // Setup dataset table long-content preview modal
+  setupDatasetTablePreviewModal();
+
+  // Setup dataset table fullscreen button
+  setupDatasetTableFullscreen();
 });

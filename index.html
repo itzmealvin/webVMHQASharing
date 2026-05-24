@@ -445,7 +445,7 @@ Mental Health Domain Question Answering"
                         <span class="icon">
                           <i class="fab fa-github"></i>
                         </span>
-                        <span>Code</span>
+                        <span>GitHub</span>
                       </a>
                     </span>
 
@@ -498,8 +498,19 @@ Mental Health Domain Question Answering"
       <!-- Dataset preview and access -->
       <section class="section dataset-section">
         <div class="container is-max-desktop">
-          <div class="dataset-card">
-            <h2 class="title is-3 dataset-title">Dataset Preview</h2>
+          <div id="dataset-preview-card" class="dataset-card">
+            <div class="dataset-title-row">
+              <h2 class="title is-3 dataset-title">Dataset Preview</h2>
+              <button
+                id="dataset-fullscreen-btn"
+                class="dataset-fullscreen-btn"
+                type="button"
+                aria-label="View table in full screen"
+              >
+                <i class="fas fa-expand"></i>
+                <span>Full screen</span>
+              </button>
+            </div>
             <div class="dataset-table-wrap">
               <table class="table is-fullwidth dataset-table">
                 <thead>
@@ -517,7 +528,7 @@ Mental Health Domain Question Answering"
                     <th>Fact 1</th>
                     <th>Fact 2</th>
                     <th>Fact 3</th>
-                    <th>Question_Type</th>
+                    <th>Type</th>
                     <th>Reference</th>
                     <th>ID</th>
                   </tr>
@@ -529,7 +540,7 @@ Mental Health Domain Question Answering"
                       Việc phát hiện nguyên nhân thực sự gây nên ảo thanh có vai
                       trò gì trong điều trị?
                     </td>
-                    <td>2</td>
+                    <td>B</td>
                     <td>Giúp tăng cường khả năng nghe của bệnh nhân</td>
                     <td>
                       Giúp kiểm soát được nguyên căn, từ đó ảo thanh sẽ biến mất
@@ -568,7 +579,7 @@ Mental Health Domain Question Answering"
                   <tr>
                     <td>Sợ không gian hẹp</td>
                     <td>chứng sợ không gian hẹp gây ảnh hưởng đến điều gì</td>
-                    <td>1</td>
+                    <td>A</td>
                     <td>Đến sức khỏe, đời sống sinh hoạt</td>
                     <td>Đến sinh hoạt</td>
                     <td>Đến hạnh phúc</td>
@@ -603,7 +614,7 @@ Mental Health Domain Question Answering"
                       Đâu là một số lý do và yếu tố nguy cơ có liên quan đến hội
                       chứng Baby Blues?
                     </td>
-                    <td>3</td>
+                    <td>C</td>
                     <td>Sự thay đổi từ từ của nội tiết tố</td>
                     <td>Sự thay đổi đột ngột của tế bào</td>
                     <td>
@@ -640,7 +651,7 @@ Mental Health Domain Question Answering"
                   <tr>
                     <td>Hoang tưởng bị hại</td>
                     <td>Thế nào là hội chứng hoang tưởng bị hại?</td>
-                    <td>2</td>
+                    <td>B</td>
                     <td>
                       Một loại rối loạn tâm thần liên quan đến hành vi ăn uống
                       và hình thể.
@@ -714,7 +725,7 @@ Mental Health Domain Question Answering"
                       Khi sử dụng hà thủ ô để chữa mất ngủ, không nên sử dụng
                       gì?
                     </td>
-                    <td>2</td>
+                    <td>B</td>
                     <td>Chất kích thích</td>
                     <td>
                       Các loại thuốc lợi tiểu, thuốc chống đông; kiêng sử dụng
@@ -759,6 +770,34 @@ Mental Health Domain Question Answering"
             </p>
           </div>
 
+          <div
+            id="dataset-cell-modal"
+            class="dataset-modal"
+            hidden
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="dataset-modal-title"
+          >
+            <div class="dataset-modal-backdrop" data-close-modal="true"></div>
+            <div class="dataset-modal-card">
+              <div class="dataset-modal-header">
+                <h3 id="dataset-modal-title">Details</h3>
+                <button
+                  type="button"
+                  class="dataset-modal-close"
+                  aria-label="Close"
+                  data-close-modal="true"
+                >
+                  ×
+                </button>
+              </div>
+              <div
+                id="dataset-modal-content"
+                class="dataset-modal-content"
+              ></div>
+            </div>
+          </div>
+
           <div class="dataset-access-grid">
             <div class="dataset-card">
               <h2 class="title is-3 dataset-title">Dataset Access Policy</h2>
@@ -785,7 +824,9 @@ Mental Health Domain Question Answering"
                 method="post"
                 data-endpoint="https://script.google.com/macros/s/AKfycbz0A98w6rUzAykFvgtO4ov7zgLgJ4DauT0q7BAfu0fqEhxR1Cc85ZbGnIq9H9kl2pQi4w/exec"
               >
-                <label for="name">Your name</label>
+                <label for="name"
+                  >Your name <span class="required">*</span></label
+                >
                 <input
                   id="name"
                   name="name"
@@ -794,7 +835,9 @@ Mental Health Domain Question Answering"
                   required
                 />
 
-                <label for="email">Email address</label>
+                <label for="email"
+                  >Email address <span class="required">*</span></label
+                >
                 <input
                   id="email"
                   name="email"
@@ -803,16 +846,22 @@ Mental Health Domain Question Answering"
                   required
                 />
 
-                <label for="organization">Organization / Institution</label>
+                <label for="organization"
+                  >Organization / Institution
+                  <span class="required">*</span></label
+                >
                 <input
                   id="organization"
                   name="organization"
                   type="text"
-                  placeholder="Enter your organization or institution"
+                  placeholder="Enter your organization, institution, or 'personal' if not affiliated"
                   required
                 />
 
-                <label for="purpose">Intended purpose of use</label>
+                <label for="purpose"
+                  >Intended purpose of use
+                  <span class="required">*</span></label
+                >
                 <textarea
                   id="purpose"
                   name="purpose"
@@ -823,16 +872,20 @@ Mental Health Domain Question Answering"
 
                 <label class="check-row"
                   ><input type="checkbox" name="agree1" value="true" required />
-                  I agree to cite the VMHQA paper.</label
-                >
+                  I agree to cite the VMHQA paper.<span class="required"
+                    >*</span
+                  >
+                </label>
                 <label class="check-row"
                   ><input type="checkbox" name="agree2" value="true" required />
                   I confirm that I will not use this dataset for any commercial
-                  purpose.</label
+                  purpose. <span class="required">*</span></label
                 >
                 <label class="check-row"
                   ><input type="checkbox" name="agree3" value="true" required />
-                  I agree not to redistribute the dataset.</label
+                  I agree not to redistribute the dataset.<span class="required"
+                    >*</span
+                  ></label
                 >
 
                 <div
