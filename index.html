@@ -11,6 +11,12 @@
         };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+    <link rel="preconnect" href="https://challenges.cloudflare.com" />
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
 
     <!-- Primary Meta Tags -->
     <meta
@@ -777,7 +783,7 @@ Mental Health Domain Question Answering"
                 class="dataset-form"
                 action="#"
                 method="post"
-                data-endpoint="https://script.google.com/macros/s/AKfycbyu1rGWst3J9yK0WztfWhyRbr-V7VW9ka5fzkDzxS3hX9nPNdEsg_ROz-Y2gEevumV5Lw/exec"
+                data-endpoint="https://script.google.com/macros/s/AKfycbz0A98w6rUzAykFvgtO4ov7zgLgJ4DauT0q7BAfu0fqEhxR1Cc85ZbGnIq9H9kl2pQi4w/exec"
               >
                 <label for="name">Your name</label>
                 <input
@@ -816,18 +822,24 @@ Mental Health Domain Question Answering"
                 ></textarea>
 
                 <label class="check-row"
-                  ><input type="checkbox" name="agree1" required /> I agree to
-                  cite the VMHQA paper.</label
+                  ><input type="checkbox" name="agree1" value="true" required />
+                  I agree to cite the VMHQA paper.</label
                 >
                 <label class="check-row"
-                  ><input type="checkbox" name="agree2" required /> I confirm
-                  that I will not use this dataset for any commercial
+                  ><input type="checkbox" name="agree2" value="true" required />
+                  I confirm that I will not use this dataset for any commercial
                   purpose.</label
                 >
                 <label class="check-row"
-                  ><input type="checkbox" name="agree3" required /> I agree not
-                  to redistribute the dataset.</label
+                  ><input type="checkbox" name="agree3" value="true" required />
+                  I agree not to redistribute the dataset.</label
                 >
+
+                <div
+                  class="cf-turnstile"
+                  data-sitekey="0x4AAAAAADVSaxd-ykbp856I"
+                  data-theme="light"
+                ></div>
 
                 <button
                   id="dataset-submit-btn"
@@ -837,6 +849,7 @@ Mental Health Domain Question Answering"
                   Request Dataset Access
                 </button>
               </form>
+              <iframe name="hidden_iframe" style="display: none"></iframe>
               <p id="dataset-success" class="dataset-success" hidden>
                 <i class="fas fa-check-circle"></i>
                 Thank you. The dataset download link will be automatically sent

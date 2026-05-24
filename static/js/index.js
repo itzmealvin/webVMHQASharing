@@ -156,7 +156,6 @@ function setupDatasetRequestForm() {
     const formData = new FormData(form);
     const payload = {
       data: Object.fromEntries(formData.entries()),
-      action: "grant",
     };
 
     try {
@@ -174,8 +173,28 @@ function setupDatasetRequestForm() {
         redirect: "follow",
       });
 
+      let responseData = null;
+      try {
+        responseData = await response.json();
+      } catch (_) {
+        // Some endpoints may return empty body or non-JSON.
+      }
+
       if (!response.ok) {
         throw new Error("Request failed");
+      }
+
+      // Support APIs that always return HTTP 200 and encode status in JSON body.
+      if (responseData && typeof responseData === "object") {
+        const statusValue = responseData.status;
+
+        const statusIsOk = statusValue === 200 || statusValue === 201;
+
+        const apiIndicatesFailure = "status" in responseData && !statusIsOk;
+
+        if (apiIndicatesFailure) {
+          throw new Error(responseData.message);
+        }
       }
 
       form.reset();
