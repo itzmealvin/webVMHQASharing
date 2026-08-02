@@ -5,12 +5,16 @@ function toggleMoreWorks() {
   const dropdown = document.getElementById("moreWorksDropdown");
   const button = document.querySelector(".more-works-btn");
 
+  if (!dropdown || !button) return;
+
   if (dropdown.classList.contains("show")) {
     dropdown.classList.remove("show");
     button.classList.remove("active");
+    button.setAttribute("aria-expanded", "false");
   } else {
     dropdown.classList.add("show");
     button.classList.add("active");
+    button.setAttribute("aria-expanded", "true");
   }
 }
 
@@ -20,9 +24,10 @@ document.addEventListener("click", function (event) {
   const dropdown = document.getElementById("moreWorksDropdown");
   const button = document.querySelector(".more-works-btn");
 
-  if (container && !container.contains(event.target)) {
+  if (container && dropdown && button && !container.contains(event.target)) {
     dropdown.classList.remove("show");
     button.classList.remove("active");
+    button.setAttribute("aria-expanded", "false");
   }
 });
 
@@ -31,8 +36,11 @@ document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
     const dropdown = document.getElementById("moreWorksDropdown");
     const button = document.querySelector(".more-works-btn");
-    dropdown.classList.remove("show");
-    button.classList.remove("active");
+    if (dropdown && button) {
+      dropdown.classList.remove("show");
+      button.classList.remove("active");
+      button.setAttribute("aria-expanded", "false");
+    }
   }
 });
 
@@ -40,46 +48,50 @@ document.addEventListener("keydown", function (event) {
 function copyBibTeX() {
   const bibtexElement = document.getElementById("bibtex-code");
   const button = document.querySelector(".copy-bibtex-btn");
-  const copyText = button.querySelector(".copy-text");
+  const copyText = button && button.querySelector(".copy-text");
 
-  if (bibtexElement) {
-    navigator.clipboard
-      .writeText(bibtexElement.textContent)
-      .then(function () {
-        // Success feedback
-        button.classList.add("copied");
-        copyText.textContent = "Cop";
+  if (!bibtexElement || !button || !copyText) return;
 
-        setTimeout(function () {
-          button.classList.remove("copied");
-          copyText.textContent = "Copy";
-        }, 2000);
-      })
-      .catch(function (err) {
-        console.error("Failed to copy: ", err);
-        // Fallback for older browsers
-        const textArea = document.createElement("textarea");
-        textArea.value = bibtexElement.textContent;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
+  const showFeedback = (message, status) => {
+    button.classList.toggle("copied", status === "success");
+    button.classList.toggle("copy-failed", status === "error");
+    copyText.textContent = message;
 
-        button.classList.add("copied");
-        copyText.textContent = "Cop";
-        setTimeout(function () {
-          button.classList.remove("copied");
-          copyText.textContent = "Copy";
-        }, 2000);
-      });
-  }
+    setTimeout(function () {
+      button.classList.remove("copied", "copy-failed");
+      copyText.textContent = "Copy";
+    }, 2000);
+  };
+
+  const fallbackCopy = () => {
+    const textArea = document.createElement("textarea");
+    textArea.value = bibtexElement.textContent;
+    document.body.appendChild(textArea);
+    textArea.select();
+    const copied = document.execCommand("copy");
+    document.body.removeChild(textArea);
+    if (!copied) throw new Error("Copy command was not accepted");
+  };
+
+  const writeToClipboard = navigator.clipboard
+    ? navigator.clipboard.writeText(bibtexElement.textContent)
+    : Promise.reject(new Error("Clipboard API is unavailable"));
+
+  writeToClipboard
+    .catch(fallbackCopy)
+    .then(() => showFeedback("Copied", "success"))
+    .catch(() => showFeedback("Copy failed", "error"));
 }
 
 // Scroll to top functionality
 function scrollToTop() {
   window.scrollTo({
     top: 0,
-    behavior: "smooth",
+    behavior:
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
   });
 }
 
@@ -133,6 +145,61 @@ function setupDatasetTablePreviewModal() {
 
   if (!table || !modal || !modalContent) return;
 
+  const closeButton = modal.querySelector(".dataset-modal-close");
+  let lastModalTrigger = null;
+  const inertedElements = new Map();
+
+  const setElementInert = (element, isInert) => {
+    if ("inert" in element) {
+      element.inert = isInert;
+    } else if (isInert) {
+      element.setAttribute("inert", "");
+    } else {
+      element.removeAttribute("inert");
+    }
+  };
+
+  const setModalBackgroundInert = (isInert) => {
+    if (!isInert) {
+      inertedElements.forEach((wasInert, element) => {
+        setElementInert(element, wasInert);
+      });
+      inertedElements.clear();
+      return;
+    }
+
+    let current = modal;
+    while (current && current.parentElement) {
+      Array.from(current.parentElement.children).forEach((sibling) => {
+        if (sibling === current || inertedElements.has(sibling)) return;
+        inertedElements.set(
+          sibling,
+          "inert" in sibling ? sibling.inert : sibling.hasAttribute("inert"),
+        );
+        setElementInert(sibling, true);
+      });
+      current = current.parentElement;
+      if (current === document.body) break;
+    }
+  };
+
+  const getFocusableElements = () =>
+    Array.from(
+      modal.querySelectorAll(
+        'a[href], area[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((element) => !element.hidden);
+
+  const closeModal = () => {
+    if (modal.hidden) return;
+    modal.hidden = true;
+    document.body.style.overflow = "";
+    setModalBackgroundInert(false);
+    if (lastModalTrigger && lastModalTrigger.isConnected) {
+      lastModalTrigger.focus();
+    }
+  };
+
   // Ensure modal is inside fullscreen root so it remains visible in fullscreen mode.
   if (fullscreenRoot && modal.parentElement !== fullscreenRoot) {
     fullscreenRoot.appendChild(modal);
@@ -155,13 +222,8 @@ function setupDatasetTablePreviewModal() {
     const moreBtn = document.createElement("button");
     moreBtn.type = "button";
     moreBtn.className = "cell-see-more";
-    moreBtn.textContent = "See more...";
+    moreBtn.textContent = "See more…";
     moreBtn.setAttribute("aria-label", "See full cell content");
-    moreBtn.addEventListener("click", () => {
-      modalContent.textContent = text;
-      modal.hidden = false;
-      document.body.style.overflow = "hidden";
-    });
 
     cell.appendChild(preview);
     cell.appendChild(moreBtn);
@@ -174,22 +236,42 @@ function setupDatasetTablePreviewModal() {
     const td = trigger.closest("td");
     if (!td || !td.dataset.fullText) return;
     event.preventDefault();
+    lastModalTrigger = trigger;
     modalContent.textContent = td.dataset.fullText;
     modal.hidden = false;
     document.body.style.overflow = "hidden";
+    setModalBackgroundInert(true);
+    if (closeButton) closeButton.focus();
   });
 
   modal.addEventListener("click", (event) => {
     const shouldClose = event.target.closest("[data-close-modal='true']");
     if (!shouldClose) return;
-    modal.hidden = true;
-    document.body.style.overflow = "";
+    closeModal();
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !modal.hidden) {
-      modal.hidden = true;
-      document.body.style.overflow = "";
+  modal.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeModal();
+      return;
+    }
+
+    if (event.key !== "Tab") return;
+
+    const focusableElements = getFocusableElements();
+    if (focusableElements.length === 0) {
+      event.preventDefault();
+      return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
     }
   });
 }
@@ -201,7 +283,23 @@ function setupDatasetTableFullscreen() {
   if (!fullscreenRoot || !wrap || !button) return;
 
   const icon = button.querySelector("i");
-  const label = button.querySelector("span");
+  const label = button.querySelector(".dataset-fullscreen-label");
+
+  const lockLandscapeOrientation = async () => {
+    if (!screen.orientation || !screen.orientation.lock) return;
+
+    try {
+      await screen.orientation.lock("landscape");
+    } catch (_) {
+      // Some mobile browsers only allow orientation locking in installed apps.
+    }
+  };
+
+  const unlockOrientation = () => {
+    if (screen.orientation && screen.orientation.unlock) {
+      screen.orientation.unlock();
+    }
+  };
 
   const updateButtonState = () => {
     const isFullscreen =
@@ -214,12 +312,15 @@ function setupDatasetTableFullscreen() {
         icon.classList.add("fa-compress");
       }
       if (label) label.textContent = "Exit full screen";
+      button.setAttribute("aria-label", "Exit full screen");
     } else {
+      unlockOrientation();
       if (icon) {
         icon.classList.remove("fa-compress");
         icon.classList.add("fa-expand");
       }
       if (label) label.textContent = "Full screen";
+      button.setAttribute("aria-label", "View table in full screen");
     }
   };
 
@@ -232,8 +333,10 @@ function setupDatasetTableFullscreen() {
       if (!isFullscreen) {
         if (fullscreenRoot.requestFullscreen) {
           await fullscreenRoot.requestFullscreen();
+          await lockLandscapeOrientation();
         } else if (fullscreenRoot.webkitRequestFullscreen) {
           fullscreenRoot.webkitRequestFullscreen();
+          await lockLandscapeOrientation();
         }
       } else if (document.exitFullscreen) {
         await document.exitFullscreen();
@@ -258,22 +361,43 @@ function setupDatasetRequestForm() {
   if (!form) return;
 
   const submitBtn = document.getElementById("dataset-submit-btn");
+  const submitLabel = submitBtn && submitBtn.querySelector(".submit-label");
   const successMsg = document.getElementById("dataset-success");
   const errorMsg = document.getElementById("dataset-error");
-  const defaultBtnText = submitBtn ? submitBtn.textContent : "";
+  const defaultBtnText = submitLabel
+    ? submitLabel.textContent
+    : submitBtn
+      ? submitBtn.textContent
+      : "";
   const endpoint = (form.dataset.endpoint || "").trim();
+  let formIsDirty = false;
+
+  const markFormDirty = () => {
+    formIsDirty = true;
+  };
+
+  form.addEventListener("input", markFormDirty);
+  form.addEventListener("change", markFormDirty);
+  window.addEventListener("beforeunload", (event) => {
+    if (!formIsDirty) return;
+    event.preventDefault();
+    event.returnValue = "";
+  });
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
+    formIsDirty = true;
 
     if (successMsg) successMsg.hidden = true;
     if (errorMsg) errorMsg.hidden = true;
 
     if (!endpoint || endpoint === "https://YOUR_PUBLIC_ENDPOINT_HERE") {
       if (errorMsg) {
-        errorMsg.textContent = " Public endpoint is not configured yet.";
+        errorMsg.textContent =
+          "Dataset requests are not configured yet. Use the contact details in the paper to request access.";
         const icon = document.createElement("i");
         icon.className = "fas fa-exclamation-circle";
+        icon.setAttribute("aria-hidden", "true");
         errorMsg.prepend(icon);
         errorMsg.hidden = false;
       }
@@ -288,7 +412,11 @@ function setupDatasetRequestForm() {
     try {
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = "Submitting...";
+        submitBtn.classList.add("is-loading");
+        submitBtn.setAttribute("aria-busy", "true");
+        if (submitLabel) {
+          submitLabel.textContent = "Submitting…";
+        }
       }
 
       const response = await fetch(endpoint, {
@@ -325,13 +453,20 @@ function setupDatasetRequestForm() {
       }
 
       form.reset();
+      formIsDirty = false;
       if (successMsg) successMsg.hidden = false;
     } catch (error) {
       if (errorMsg) errorMsg.hidden = false;
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.textContent = defaultBtnText;
+        submitBtn.classList.remove("is-loading");
+        submitBtn.removeAttribute("aria-busy");
+        if (submitLabel) {
+          submitLabel.textContent = defaultBtnText;
+        } else {
+          submitBtn.textContent = defaultBtnText;
+        }
       }
     }
   });

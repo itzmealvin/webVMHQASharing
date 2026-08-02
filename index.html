@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="color-scheme: light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -140,7 +140,7 @@ Mental Health Domain Question Answering"
     />
 
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#39546d" />
+    <meta name="theme-color" content="#f5f8f6" />
     <meta name="msapplication-TileColor" content="#39546d" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -190,30 +190,17 @@ Mental Health Domain Question Answering"
         this.rel = 'stylesheet';
       "
     />
-    <link
-      rel="preload"
-      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-    />
 
     <!-- Fallback for browsers that don't support preload -->
     <noscript>
       <link rel="stylesheet" href="static/css/bulma-carousel.min.css" />
       <link rel="stylesheet" href="static/css/bulma-slider.min.css" />
       <link rel="stylesheet" href="static/css/fontawesome.all.min.css" />
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
-      />
     </noscript>
 
     <!-- Fonts - Optimized loading -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap"
       rel="stylesheet"
     />
 
@@ -248,21 +235,21 @@ Mental Health Domain Question Answering"
             "@id": "https://www.vnuhcm.edu.vn/#org",
             "name": "Vietnam National University, Ho Chi Minh City",
             "url": "https://www.vnuhcm.edu.vn/",
-            "logo": "https://vmhqa.vercel.app/static/images/vnuhcmc.png",
+            "logo": "https://vmhqa.vercel.app/static/images/vnuhcmc.png"
           },
           {
             "@type": "Organization",
             "@id": "https://daihoc.fpt.edu.vn/#org",
             "name": "Faculty of Information Technology, FPT University, Thu Duc City",
-            "url": "https://daihoc.fpt.edu.vn/"
-            "logo": "https://vmhqa.vercel.app/static/images/fpt.png",
+            "url": "https://daihoc.fpt.edu.vn/",
+            "logo": "https://vmhqa.vercel.app/static/images/fpt.png"
           },
           {
             "@type": "Organization",
             "@id": "https://publications.eai.eu/#org",
             "name": "EAI Endorsed Transactions on Scalable Information Systems",
-            "url": "https://publications.eai.eu/index.php/sis"
-            "logo": "https://vmhqa.vercel.app/static/images/fpt.png",
+            "url": "https://publications.eai.eu/index.php/sis",
+            "logo": "https://vmhqa.vercel.app/static/images/fpt.png"
           },
           {
             "@type": "ScholarlyArticle",
@@ -297,9 +284,7 @@ Mental Health Domain Question Answering"
               {
                 "@type": "Person",
                 "name": "Alfred Hoang Nguyen",
-                "affiliation": [
-                  { "@id": "https://daihoc.fpt.edu.vn/#org" }
-                ]
+                "affiliation": [{ "@id": "https://daihoc.fpt.edu.vn/#org" }]
               },
               {
                 "@type": "Person",
@@ -314,7 +299,16 @@ Mental Health Domain Question Answering"
             "publisher": { "@id": "https://publications.eai.eu/#org" },
             "url": "https://vmhqa.vercel.app",
             "image": "https://vmhqa.vercel.app/static/images/example.png",
-            "keywords": ["VMHQA", "Mental Health Dataset", "Vietnamese Multiple-Choice Question Answering (MCQA)", "BERT-based Models", "NLP in Mental Health", "Retrieval-Augmented Generation (RAG)", "Agentic Chunking", "Large Language Models (LLMs)"],
+            "keywords": [
+              "VMHQA",
+              "Mental Health Dataset",
+              "Vietnamese Multiple-Choice Question Answering (MCQA)",
+              "BERT-based Models",
+              "NLP in Mental Health",
+              "Retrieval-Augmented Generation (RAG)",
+              "Agentic Chunking",
+              "Large Language Models (LLMs)"
+            ],
             "abstract": "This paper introduces VMHQA, a Vietnamese mental-health multiple-choice QA dataset with 10,000 records and 8,599 contextual paragraphs.",
             "citation": "doi:10.4108/eetsis.7678",
             "isAccessibleForFree": true,
@@ -348,41 +342,52 @@ Mental Health Domain Question Answering"
       title="Scroll to top"
       aria-label="Scroll to top"
     >
-      <i class="fas fa-chevron-up"></i>
+      <i class="fas fa-chevron-up" aria-hidden="true"></i>
     </button>
 
+    <header class="site-masthead" aria-label="Primary navigation">
+      <div class="container is-max-desktop masthead-inner">
+        <a class="wordmark" href="#main-content" aria-label="VMHQA home"
+          >VMHQA<span>•</span></a
+        >
+        <nav aria-label="Page sections">
+          <a href="#overview">Overview</a>
+          <a href="#dataset">Dataset</a>
+          <a href="#citation">Citation</a>
+        </nav>
+      </div>
+    </header>
+
     <main id="main-content">
-      <section class="hero">
+      <section class="hero research-hero" id="overview">
         <div class="hero-body">
           <div class="container is-max-desktop">
             <div class="columns is-centered">
               <div class="column has-text-centered">
+                <p class="research-kicker">
+                  Vietnamese mental-health question answering · 2025
+                </p>
                 <h1 class="title is-1 publication-title">
                   VMHQA: A Vietnamese Multi-choice Dataset for Mental Health
                   Domain Question Answering
                 </h1>
                 <div class="is-size-5 publication-authors">
                   <span class="author-block">
-                    <a href="mailto:nghganhtu@gmail.com" target="_blank"
-                      >Tu Anh Hoang Nguyen</a
+                    <a href="mailto:nghganhtu@gmail.com">Tu Anh Hoang Nguyen</a
                     ><sup>1,2</sup>,</span
                   >
                   <span class="author-block">
-                    <a href="mailto:nqdieu@proton.me" target="_blank"
-                      >Quang-Dieu Nguyen</a
+                    <a href="mailto:nqdieu@proton.me">Quang-Dieu Nguyen</a
                     ><sup>1,2</sup>,</span
                   >
                   <span class="author-block">
-                    <a href="#" target="_blank">Harius M. Nguyen</a
-                    ><sup>1,2</sup>,</span
+                    <span>Harius M. Nguyen</span><sup>1,2</sup>,</span
                   >
                   <span class="author-block">
-                    <a href="#" target="_blank">Alfred Hoang Nguyen</a
-                    ><sup>3</sup>,</span
+                    <span>Alfred Hoang Nguyen</span><sup>3</sup>,</span
                   >
                   <span class="author-block">
-                    <a href="mailto:nttloan@hcmiu.edu.vn" target="_blank"
-                      >Loan T. T. Nguyen</a
+                    <a href="mailto:nttloan@hcmiu.edu.vn">Loan T. T. Nguyen</a
                     ><sup>1,2,*</sup>
                   </span>
                 </div>
@@ -408,61 +413,91 @@ Mental Health Domain Question Answering"
                   >
                 </div>
 
-                <div class="column has-text-centered">
-                  <div class="publication-links">
-                    <span class="link-block">
-                      <a
-                        href="static/pdfs/sample.pdf"
-                        target="_blank"
-                        class="external-link button is-normal is-rounded is-dark"
-                      >
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
+                <div
+                  class="publication-links"
+                  role="group"
+                  aria-label="Publication resources"
+                >
+                  <span class="link-block">
+                    <a
+                      href="static/pdfs/sample.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
 
-                    <span class="link-block">
-                      <a
-                        href="https://doi.org/10.4108/eetsis.7678"
-                        target="_blank"
-                        class="external-link button is-normal is-rounded is-dark"
-                      >
-                        <span class="icon">
-                          <i class="ai ai-doi"></i>
-                        </span>
-                        <span>DOI</span>
-                      </a>
-                    </span>
+                  <span class="link-block">
+                    <a
+                      href="https://doi.org/10.4108/eetsis.7678"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <span class="doi-icon" aria-hidden="true">DOI</span>
+                      </span>
+                      <span>DOI</span>
+                    </a>
+                  </span>
 
-                    <span class="link-block">
-                      <a
-                        href="https://github.com/nghganhtu/VMHQA"
-                        target="_blank"
-                        class="external-link button is-normal is-rounded is-dark"
-                      >
-                        <span class="icon">
-                          <i class="fab fa-github"></i>
-                        </span>
-                        <span>GitHub</span>
-                      </a>
-                    </span>
+                  <span class="link-block">
+                    <a
+                      href="https://github.com/nghganhtu/VMHQA"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <svg
+                          class="github-icon"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.4.7-4.1-1.6-4.1-1.6-.5-1.4-1.3-1.7-1.3-1.7-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.2-3.3c-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3a4.7 4.7 0 0 1 1.2 3.3c0 4.6-2.8 5.7-5.5 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0 0 12 .3Z"
+                          />
+                        </svg>
+                      </span>
+                      <span>GitHub</span>
+                    </a>
+                  </span>
 
-                    <span class="link-block">
-                      <a
-                        href="https://huggingface.co/datasets/JosephNguyen/VMHQA"
-                        target="_blank"
-                        class="external-link button is-normal is-rounded is-dark"
-                      >
-                        <span class="icon">
-                          <span class="hf-icon">🤗</span>
-                        </span>
-                        <span>Hugging Face</span>
-                      </a>
-                    </span>
-                  </div>
+                  <span class="link-block">
+                    <a
+                      href="https://huggingface.co/datasets/JosephNguyen/VMHQA"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <span class="hf-icon">🤗</span>
+                      </span>
+                      <span>Hugging Face</span>
+                    </a>
+                  </span>
                 </div>
+                <dl class="research-signal" aria-label="Dataset highlights">
+                  <div>
+                    <dt>Records</dt>
+                    <dd>10,000</dd>
+                  </div>
+                  <div>
+                    <dt>Subjects</dt>
+                    <dd>1,166</dd>
+                  </div>
+                  <div>
+                    <dt>Evidence passages</dt>
+                    <dd>8,599</dd>
+                  </div>
+                </dl>
               </div>
             </div>
           </div>
@@ -470,11 +505,11 @@ Mental Health Domain Question Answering"
       </section>
 
       <!-- Paper abstract -->
-      <section class="section hero is-light">
+      <section class="section hero is-light" aria-labelledby="abstract-title">
         <div class="container is-max-widescreen">
           <div class="columns is-centered has-text-centered">
             <div class="column is-four-fifths">
-              <h2 class="title is-3">Abstract</h2>
+              <h2 class="title is-3" id="abstract-title">Abstract</h2>
               <div class="content has-text-justified">
                 <p>
                   This paper introduces VMHQA, a Vietnamese multiple-choice
@@ -496,41 +531,52 @@ Mental Health Domain Question Answering"
       <!-- End paper abstract -->
 
       <!-- Dataset preview and access -->
-      <section class="section dataset-section">
+      <section
+        class="section dataset-section"
+        id="dataset"
+        aria-labelledby="dataset-preview-title"
+      >
         <div class="container is-max-desktop">
           <div id="dataset-preview-card" class="dataset-card">
             <div class="dataset-title-row">
-              <h2 class="title is-3 dataset-title">Dataset Preview</h2>
-              <button
-                id="dataset-fullscreen-btn"
-                class="dataset-fullscreen-btn"
-                type="button"
-                aria-label="View table in full screen"
-              >
-                <i class="fas fa-expand"></i>
-                <span>Full screen</span>
-              </button>
+              <h2 class="title is-3 dataset-title" id="dataset-preview-title">
+                Dataset Preview
+              </h2>
+              <div class="dataset-actions">
+                <a class="dataset-request-link" href="#dataset-request-form">
+                  Request access
+                </a>
+                <button
+                  id="dataset-fullscreen-btn"
+                  class="dataset-fullscreen-btn"
+                  type="button"
+                  aria-label="View table in full screen"
+                >
+                  <i class="fas fa-expand" aria-hidden="true"></i>
+                  <span class="dataset-fullscreen-label">Full screen</span>
+                </button>
+              </div>
             </div>
             <div class="dataset-table-wrap">
               <table class="table is-fullwidth dataset-table">
                 <thead>
                   <tr>
-                    <th>Topic</th>
-                    <th>Question</th>
-                    <th>Answer</th>
-                    <th>Option A</th>
-                    <th>Option B</th>
-                    <th>Option C</th>
-                    <th>Option D</th>
-                    <th>Paragraph 1</th>
-                    <th>Paragraph 2</th>
-                    <th>Paragraph 3</th>
-                    <th>Fact 1</th>
-                    <th>Fact 2</th>
-                    <th>Fact 3</th>
-                    <th>Type</th>
-                    <th>Reference</th>
-                    <th>ID</th>
+                    <th scope="col">Topic</th>
+                    <th scope="col">Question</th>
+                    <th scope="col">Answer</th>
+                    <th scope="col">Option A</th>
+                    <th scope="col">Option B</th>
+                    <th scope="col">Option C</th>
+                    <th scope="col">Option D</th>
+                    <th scope="col">Paragraph 1</th>
+                    <th scope="col">Paragraph 2</th>
+                    <th scope="col">Paragraph 3</th>
+                    <th scope="col">Fact 1</th>
+                    <th scope="col">Fact 2</th>
+                    <th scope="col">Fact 3</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Reference</th>
+                    <th scope="col">ID</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -777,6 +823,7 @@ Mental Health Domain Question Answering"
             role="dialog"
             aria-modal="true"
             aria-labelledby="dataset-modal-title"
+            aria-describedby="dataset-modal-content"
           >
             <div class="dataset-modal-backdrop" data-close-modal="true"></div>
             <div class="dataset-modal-card">
@@ -831,7 +878,8 @@ Mental Health Domain Question Answering"
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="Enter your full name"
+                  autocomplete="name"
+                  placeholder="e.g. Nguyễn An…"
                   required
                 />
 
@@ -842,7 +890,9 @@ Mental Health Domain Question Answering"
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="Enter your email address"
+                  autocomplete="email"
+                  spellcheck="false"
+                  placeholder="e.g. name@university.edu…"
                   required
                 />
 
@@ -854,7 +904,8 @@ Mental Health Domain Question Answering"
                   id="organization"
                   name="organization"
                   type="text"
-                  placeholder="Enter your organization, institution, or 'personal' if not affiliated"
+                  autocomplete="organization"
+                  placeholder="e.g. International University…"
                   required
                 />
 
@@ -866,7 +917,8 @@ Mental Health Domain Question Answering"
                   id="purpose"
                   name="purpose"
                   rows="3"
-                  placeholder="Describe how you plan to use the dataset"
+                  autocomplete="off"
+                  placeholder="e.g. Evaluate a Vietnamese QA model…"
                   required
                 ></textarea>
 
@@ -896,20 +948,31 @@ Mental Health Domain Question Answering"
 
                 <button
                   id="dataset-submit-btn"
-                  class="button is-dark is-fullwidth"
+                  class="button is-dark is-fullwidth dataset-submit-btn"
                   type="submit"
                 >
-                  Request Dataset Access
+                  <span class="submit-label">Request Dataset Access</span>
+                  <span class="submit-spinner" aria-hidden="true"></span>
                 </button>
               </form>
               <iframe name="hidden_iframe" style="display: none"></iframe>
-              <p id="dataset-success" class="dataset-success" hidden>
-                <i class="fas fa-check-circle"></i>
+              <p
+                id="dataset-success"
+                class="dataset-success"
+                aria-live="polite"
+                hidden
+              >
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
                 Thank you. The dataset download link will be automatically sent
                 to your email.
               </p>
-              <p id="dataset-error" class="dataset-error" hidden>
-                <i class="fas fa-exclamation-circle"></i>
+              <p
+                id="dataset-error"
+                class="dataset-error"
+                aria-live="polite"
+                hidden
+              >
+                <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
                 We could not submit your request. Please try again.
               </p>
             </div>
@@ -919,17 +982,17 @@ Mental Health Domain Question Answering"
       <!-- End dataset preview and access -->
 
       <!--BibTex citation -->
-      <section class="section" id="BibTeX">
+      <section class="section" id="citation" aria-labelledby="citation-title">
         <div class="container is-max-desktop content">
           <div class="bibtex-header">
-            <h2 class="title">BibTeX</h2>
+            <h2 class="title" id="citation-title">BibTeX</h2>
             <button
               class="copy-bibtex-btn"
               onclick="copyBibTeX()"
               title="Copy BibTeX to clipboard"
             >
-              <i class="fas fa-copy"></i>
-              <span class="copy-text">Copy</span>
+              <i class="fas fa-copy" aria-hidden="true"></i>
+              <span class="copy-text" aria-live="polite">Copy</span>
             </button>
           </div>
           <pre
@@ -963,18 +1026,20 @@ Mental Health Domain Question Answering"
                 <a
                   href="https://github.com/eliahuhorwitz/Academic-project-page-template"
                   target="_blank"
+                  rel="noopener noreferrer"
                   >Academic Project Page Template</a
                 >
                 which was adopted from the <a
                   href="https://nerfies.github.io"
                   target="_blank"
+                  rel="noopener noreferrer"
                   >Nerfies</a
                 > project page. You are free to borrow the source code of this
                 website, we just ask that you link back to this page in the
                 footer. <br />
                 This website is licensed under a
                 <a
-                  rel="license"
+                  rel="license noopener noreferrer"
                   href="http://creativecommons.org/licenses/by-sa/4.0/"
                   target="_blank"
                   >Creative Commons Attribution-ShareAlike 4.0 International
